@@ -12,6 +12,7 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.549.0",
     "@slack/web-api": "^7.0.2",
     "envalid": "^8.0.0",
     "openai": "^4.33.0",
