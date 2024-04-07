@@ -2,7 +2,8 @@
   "name": "my-feeds",
   "private": true,
   "scripts": {
-    "fmt": "prettier --write"
+    "fmt": "prettier --write",
+    "post": "ts-node ./src/main.ts"
   },
   "devDependencies": {
     "@types/node": "^20.12.5",
