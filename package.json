@@ -6,6 +6,7 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "openai": "^4.33.0",
     "rss-parser": "^3.13.0"
   }
 }
