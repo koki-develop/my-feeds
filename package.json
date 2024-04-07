@@ -13,7 +13,6 @@
   "dependencies": {
     "@slack/web-api": "^7.0.2",
     "envalid": "^8.0.0",
-    "jsx-slack": "^6.1.1",
     "openai": "^4.33.0",
     "rss-parser": "^3.13.0",
     "winston": "^3.13.0"
