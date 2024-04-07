@@ -14,7 +14,7 @@ const tables = {
 export const saveItem = async (url: string) => {
   logger.info("Saving item...", { url });
   const date = new Date();
-  date.setUTCMonth(date.getUTCMonth() + 1);
+  date.setUTCMonth(date.getUTCMonth() + 3);
   const ttl = Math.floor(date.getTime() / 1000);
 
   await db.send(

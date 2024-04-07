@@ -23,6 +23,10 @@ export const feeds = {
     name: "GitHub Changelogs Archive",
     url: "https://github.blog/changelog/feed/",
   },
+  terraform: {
+    name: "HashiCorp Blog - Terraform",
+    url: "https://www.hashicorp.com/blog/products/terraform/feed.xml",
+  },
 } as const;
 
 export const fetchGitHubFeedItems = async (): Promise<[Feed, Item[]]> => {
@@ -49,6 +53,21 @@ export const fetchAWSFeedItems = async (): Promise<[Feed, Item[]]> => {
 
   return [
     feeds.aws,
+    feed.items.map((item) => ({
+      title: item.title as string,
+      content: item.content as string,
+      url: item.link as string,
+    })),
+  ];
+};
+
+export const fetchTerraformFeedItems = async (): Promise<[Feed, Item[]]> => {
+  logger.info("Fetching Terraform feed items.");
+  const feed = await parser.parseURL(feeds.terraform.url);
+  logger.info("Fetched Terraform feed items.");
+
+  return [
+    feeds.terraform,
     feed.items.map((item) => ({
       title: item.title as string,
       content: item.content as string,
