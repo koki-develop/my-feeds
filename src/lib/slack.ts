@@ -1,10 +1,12 @@
 import { Block, HeaderBlock, SectionBlock, WebClient } from "@slack/web-api";
 import { env } from "./env";
 import { SummarizedItem } from "./openai";
+import { Feed } from "./feed";
 
 const client = new WebClient(env.SLACK_OAUTH_TOKEN);
 
 export const postSummarizedFeedItems = async (
+  feed: Feed,
   items: SummarizedItem[]
 ): Promise<void> => {
   const totalPages = Math.ceil(items.length / 2);
@@ -14,7 +16,7 @@ export const postSummarizedFeedItems = async (
 
     const picked = items.slice(i, i + 2);
     const blocks = picked.flatMap((item, index) =>
-      buildSummaryBlocks(index === 0, item)
+      buildSummaryBlocks(feed, index === 0, item)
     );
 
     await client.chat.postMessage({
@@ -25,7 +27,11 @@ export const postSummarizedFeedItems = async (
   }
 };
 
-const buildSummaryBlocks = (first: boolean, item: SummarizedItem): Block[] => {
+const buildSummaryBlocks = (
+  feed: Feed,
+  first: boolean,
+  item: SummarizedItem
+): Block[] => {
   const blocks: Block[] = [
     {
       type: "section",
@@ -41,7 +47,7 @@ const buildSummaryBlocks = (first: boolean, item: SummarizedItem): Block[] => {
       type: "header",
       text: {
         type: "plain_text",
-        text: "New Posts",
+        text: `:newspaper: New Posts (<${feed.url}|${feed.name}>)`,
       },
     } as HeaderBlock);
   }
