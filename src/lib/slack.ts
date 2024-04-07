@@ -21,7 +21,7 @@ export const postSummarizedFeedItems = async (
 
     await client.chat.postMessage({
       channel: env.SLACK_CHANNEL,
-      text: `New Posts (${currentPage}/${totalPages})`,
+      text: `New Posts (${feed.name}) (${currentPage}/${totalPages})`,
       blocks,
     });
   }
