@@ -1,6 +1,9 @@
 {
   "name": "my-feeds",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "fmt": "prettier --write",
     "post": "ts-node ./src/main.ts"
