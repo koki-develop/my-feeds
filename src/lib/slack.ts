@@ -47,7 +47,7 @@ const buildSummaryBlocks = (
       type: "header",
       text: {
         type: "plain_text",
-        text: `:newspaper: New Posts (<${feed.url}|${feed.name}>)`,
+        text: `:newspaper: New Posts (${feed.name})`,
       },
     } as HeaderBlock);
   }
