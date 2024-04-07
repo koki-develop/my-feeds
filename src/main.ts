@@ -15,7 +15,6 @@ import { postSummarizedFeedItems } from "./lib/slack";
 
       const summarized = await summarize(item);
       summarizedItems.push(summarized);
-      break;
     }
 
     await postSummarizedFeedItems(feed, summarizedItems);
