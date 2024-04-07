@@ -2,6 +2,7 @@ import { Block, HeaderBlock, SectionBlock, WebClient } from "@slack/web-api";
 import { env } from "./env";
 import { SummarizedItem } from "./openai";
 import { Feed } from "./feed";
+import { saveItem } from "./db";
 
 const client = new WebClient(env.SLACK_OAUTH_TOKEN);
 
@@ -24,6 +25,10 @@ export const postSummarizedFeedItems = async (
       text: `New Posts (${feed.name}) (${currentPage}/${totalPages})`,
       blocks,
     });
+
+    for (const item of picked) {
+      await saveItem(item.url);
+    }
   }
 };
 

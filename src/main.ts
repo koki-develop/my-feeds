@@ -1,3 +1,4 @@
+import { existsItem } from "./lib/db";
 import { fetchAWSFeedItems, fetchGitHubFeedItems } from "./lib/feed";
 import { SummarizedItem, summarize } from "./lib/openai";
 import { postSummarizedFeedItems } from "./lib/slack";
@@ -9,6 +10,9 @@ import { postSummarizedFeedItems } from "./lib/slack";
 
     const summarizedItems: SummarizedItem[] = [];
     for (const item of items) {
+      const exists = await existsItem(item.url);
+      if (exists) continue;
+
       const summarized = await summarize(item);
       summarizedItems.push(summarized);
       break;
