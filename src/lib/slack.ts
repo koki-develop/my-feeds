@@ -17,7 +17,7 @@ export const postSummarizedFeedItems = async (
 
     const picked = items.slice(i, i + 2);
     const blocks = picked.flatMap((item, index) =>
-      buildSummaryBlocks(feed, index === 0, item)
+      buildSummaryBlocks(feed, index === 0 && i === 0, item)
     );
 
     await client.chat.postMessage({
