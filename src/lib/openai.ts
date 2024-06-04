@@ -16,7 +16,7 @@ export const summarize = async (item: Item): Promise<SummarizedItem> => {
     "受け取った記事の内容を箇条書きで日本語で簡潔に要約してください。リスト以外のマークダウン記法は使用しないでください。";
 
   const stream = await openai.chat.completions.create({
-    model: "gpt-4-turbo-preview",
+    model: "gpt-4o",
     messages: [
       { role: "system", content: prompt },
       { role: "user", content: item.content },
